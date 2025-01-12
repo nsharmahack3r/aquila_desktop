@@ -19,35 +19,36 @@ class AppNavigator extends StatelessWidget {
     ];
 
     return Material(
-        child: Container(
-          width: 300,
-          decoration: const BoxDecoration(
-            color: Colors.white,
-          ),
-          child: ListView(
-            children: [
-              Container(
-                padding: const EdgeInsets.all(32.0),
-                decoration: const BoxDecoration(
-                  color: Colors.deepPurple,
-                ),
-                child: const Text(
-                  "Aqulia",
-                  style: TextStyle(
-                    fontSize: 32,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-              ListView.builder(
-                shrinkWrap: true,
-                itemCount: options.length,
-                itemBuilder: (context, index) => NavigatorOption(title: options[index], index: index),
-              ),
-            ],
-          ),
+      child: Container(
+        width: 300,
+        decoration: const BoxDecoration(
+          color: Colors.white,
         ),
-      );
+        child: ListView(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(32.0),
+              decoration: const BoxDecoration(
+                color: Colors.deepPurple,
+              ),
+              child: const Text(
+                "Aquila",
+                style: TextStyle(
+                  fontSize: 32,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            ListView.builder(
+              shrinkWrap: true,
+              itemCount: options.length,
+              itemBuilder: (context, index) =>
+                  NavigatorOption(title: options[index], index: index),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
 
@@ -67,9 +68,11 @@ class NavigatorOption extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return MaterialButton(
       elevation: 0.0,
-      color: ref.watch(navigatorIndexProvider) == index ? Colors.grey.shade300 : Colors.white,
+      color: ref.watch(navigatorIndexProvider) == index
+          ? Colors.grey.shade300
+          : Colors.white,
       onPressed: () {
-        ref.read(navigatorIndexProvider.notifier).update((state) => index );
+        ref.read(navigatorIndexProvider.notifier).update((state) => index);
       },
       child: Container(
         padding: const EdgeInsets.all(16.0),

@@ -37,7 +37,7 @@ class Recruiter {
 
   factory Recruiter.fromMap(Map<String, dynamic> map) {
     return Recruiter(
-      id: map['id'] as String,
+      id: map['_id'] as String,
       name: map['name'] as String,
       email: map['email'] as String,
       location: map['location'] as String,
@@ -46,7 +46,8 @@ class Recruiter {
 
   String toJson() => json.encode(toMap());
 
-  factory Recruiter.fromJson(String source) => Recruiter.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Recruiter.fromJson(String source) =>
+      Recruiter.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
@@ -56,19 +57,15 @@ class Recruiter {
   @override
   bool operator ==(covariant Recruiter other) {
     if (identical(this, other)) return true;
-  
-    return 
-      other.id == id &&
-      other.name == name &&
-      other.email == email &&
-      other.location == location;
+
+    return other.id == id &&
+        other.name == name &&
+        other.email == email &&
+        other.location == location;
   }
 
   @override
   int get hashCode {
-    return id.hashCode ^
-      name.hashCode ^
-      email.hashCode ^
-      location.hashCode;
+    return id.hashCode ^ name.hashCode ^ email.hashCode ^ location.hashCode;
   }
 }

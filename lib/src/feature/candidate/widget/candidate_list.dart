@@ -9,6 +9,7 @@ class CandidateList extends StatelessWidget {
   Widget build(BuildContext context) {
     final candidates = SampleCandidates.getSampleCandidates();
     return ListView.builder(
+      padding: const EdgeInsets.all(24.0),
       itemCount: candidates.length,
       itemBuilder: (context, index) {
         return CandidateCard(candidate: candidates[index]);

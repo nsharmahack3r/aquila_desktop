@@ -7,9 +7,12 @@ class CandidateHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: false,
         title: const Text("All Candidates"),
+        backgroundColor: Colors.white,
+        surfaceTintColor: Colors.white,
       ),
       body: const CandidateList(),
     );
