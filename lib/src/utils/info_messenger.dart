@@ -9,7 +9,7 @@ class InfoMessenger {
     ElegantNotification.success(
       description: Text(description),
       title: Text(title),
-      width: 300,
+      width: 600,
     ).show(context);
   }
 
@@ -31,7 +31,7 @@ class InfoMessenger {
     ElegantNotification.info(
       description: Text(description),
       title: Text(title),
-      width: 300,
+      width: 600,
     ).show(context);
   }
 }

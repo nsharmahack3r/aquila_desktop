@@ -35,7 +35,9 @@ class _HomeViewState extends ConsumerState<HomeView> {
             SizedBox(
               height: 36,
             ),
-            Flexible(child: DashboardGrid()),
+            Flexible(
+              child: DashboardGrid(),
+            ),
           ],
         ),
       ),

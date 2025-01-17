@@ -6,4 +6,5 @@ class RecruiterEndpoints {
   static const _base = BaseEndpoints.baseUrl;
 
   static const recruiter = '$_base/recruiter';
+  static updateRecruiter(String id) => "$recruiter/$id";
 }

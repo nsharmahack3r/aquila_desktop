@@ -31,20 +31,61 @@ class RecruiterRepository {
     required String name,
     required String location,
   }) async {
-    final result = await _appNetwork.postRequest(url: RecruiterEndpoints.recruiter, body: {
-      'email': email,
-      'name': name,
-      'location': location,
-    },);
+    final result = await _appNetwork.postRequest(
+      url: RecruiterEndpoints.recruiter,
+      body: {
+        'email': email,
+        'name': name,
+        'location': location,
+      },
+    );
 
-    result.fold((failure){
+    return result.fold((failure) {
       return null;
-    }, (response){
+    }, (response) {
+      final data = response.data;
+      final recruiterJson = data['data'];
 
-      // final data = response.data;
-      // final 
-      
+      return Recruiter.fromMap(recruiterJson);
     });
+  }
 
+  Future<Recruiter?> updateRecruiter({
+    required String email,
+    required String name,
+    required String location,
+    required String id,
+  }) async {
+    final result = await _appNetwork.putRequest(
+      url: RecruiterEndpoints.updateRecruiter(id),
+      body: {
+        'email': email,
+        'name': name,
+        'location': location,
+      },
+    );
+
+    return result.fold((failure) {
+      return null;
+    }, (response) {
+      final data = response.data;
+      final recruiterJson = data['data'];
+
+      return Recruiter.fromMap(recruiterJson);
+    });
+  }
+
+  Future<bool> deleteRecruiter({required String id}) async {
+    final result = await _appNetwork.deleteRequest(
+      url: RecruiterEndpoints.updateRecruiter(id),
+      body: {},
+    );
+
+    return result.fold((failure) {
+      return false;
+    }, (response) {
+      final data = response.data;
+      return data['success'];
+    });
   }
 }

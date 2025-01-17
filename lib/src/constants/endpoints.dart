@@ -1,5 +1,5 @@
 class BaseEndpoints {
   BaseEndpoints._();
 
-  static const baseUrl = "http://192.168.47.90:3000/api/v1";
+  static const baseUrl = "http://192.168.31.254:3000/api/v1";
 }

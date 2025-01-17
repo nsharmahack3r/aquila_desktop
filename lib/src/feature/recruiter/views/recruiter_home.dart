@@ -1,5 +1,7 @@
 import 'package:aquila/src/feature/recruiter/controller/recruiter_home_controller.dart';
-import 'package:aquila/src/feature/recruiter/widgets/recruiter_card.dart';
+import 'package:aquila/src/feature/recruiter/widgets/recruiter_list.dart';
+import 'package:aquila/src/feature/recruiter/widgets/recruiter_preview.dart';
+import 'package:aquila/src/model/recruiter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -52,13 +54,23 @@ class _RecruiterHomeState extends ConsumerState<RecruiterHome> {
               ],
             ));
           }
-          return ListView.builder(
-            padding: const EdgeInsets.all(24.0),
-            itemCount: state.recruiters.length,
-            itemBuilder: (context, index) {
-              final recruiter = state.recruiters[index];
-              return RecruiterCard(recruiter: recruiter);
-            },
+          return Row(
+            children: [
+              const Flexible(child: RecruiterList()),
+              Consumer(
+                builder: (context, ref, child) {
+                  final focusedRecruiter = ref.watch(
+                      recruiterHomeControllerProvider
+                          .select((value) => value.focusedRecruiter));
+                  return Flexible(
+                    child: RecruiterPreview(
+                      key: Key(focusedRecruiter?.id ?? ""),
+                      recruiter: focusedRecruiter ?? Recruiter.empty(),
+                    ),
+                  );
+                },
+              )
+            ],
           );
         },
       ),

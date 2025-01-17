@@ -2,6 +2,7 @@
 
 import 'package:aquila/src/feature/recruiter/repository/recruiter_repository.dart';
 import 'package:aquila/src/feature/recruiter/state/recruiter_home_state.dart';
+import 'package:aquila/src/model/recruiter.dart';
 import 'package:aquila/src/utils/info_messenger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -42,5 +43,49 @@ class RecruiterHomeController extends StateNotifier<RecruiterHomeState> {
   void retry({BuildContext? context}) {
     state = state.copyWith(error: false, loading: false);
     getAllRecruiters(context: context);
+  }
+
+  void setFocusedRecruiter(Recruiter recruiter) {
+    if (state.focusedRecruiter == null) {
+      state = state.setFocusedRecruiter(recruiter);
+    } else {
+      if (state.focusedRecruiter!.id == recruiter.id) {
+        state = state.setFocusedRecruiter(null);
+      } else {
+        state = state.setFocusedRecruiter(recruiter);
+      }
+    }
+  }
+
+  void addNewRecruiter({required Recruiter newRecruiter}) {
+    state = state.copyWith(recruiters: [
+      newRecruiter,
+      ...state.recruiters,
+    ]);
+  }
+
+  void updateRecruiter({required Recruiter updatedRecuiter}) {
+    final index = state.recruiters
+        .indexWhere((recruiter) => recruiter.id == updatedRecuiter.id);
+
+    if (index == -1) {
+      return;
+    }
+
+    final existingRecruiterList = state.recruiters;
+    existingRecruiterList[index] = updatedRecuiter;
+
+    state = state.copyWith(recruiters: [
+      ...existingRecruiterList,
+    ]);
+  }
+
+  void removeRecruiter() {
+    final removedRecruiter = state.focusedRecruiter!;
+    final updatedList = state.recruiters;
+    updatedList.removeWhere((test) => test.id == removedRecruiter.id);
+
+    state = state.copyWith(recruiters: [...updatedList]);
+    state = state.setFocusedRecruiter(null);
   }
 }

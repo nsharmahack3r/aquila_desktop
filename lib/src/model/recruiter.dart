@@ -12,6 +12,15 @@ class Recruiter {
     required this.location,
   });
 
+  factory Recruiter.empty() {
+    return Recruiter(
+      id: '',
+      name: '',
+      email: '',
+      location: '',
+    );
+  }
+
   Recruiter copyWith({
     String? id,
     String? name,
