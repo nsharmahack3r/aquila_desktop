@@ -47,10 +47,12 @@ class AuthController extends StateNotifier<bool> {
       return;
     }
 
+    final user = auth.user;
+
     if (context != null) {
       InfoMessenger.showSuccess(
         context: context,
-        description: "Hello User!",
+        description: "Hello ${user.name}",
         title: "Authenticated",
       );
 
@@ -64,6 +66,12 @@ class AuthController extends StateNotifier<bool> {
     _saveAuthState(auth);
 
     state = false;
+  }
+
+  void logout(){
+    _ref.read(currentUserProvider.notifier).update((state) => null);
+    _ref.read(authTokenProvider.notifier).update((state) => null);
+    _ref.read(sharedPrefs).clear();
   }
 
   _saveAuthState(Auth auth) {

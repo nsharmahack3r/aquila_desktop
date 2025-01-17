@@ -33,4 +33,9 @@ class SharedPrefs {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getString(SharedPrefsKeys.AUTH_TOKEN_KEY);
   }
+
+  void clear() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.clear();
+  }
 }

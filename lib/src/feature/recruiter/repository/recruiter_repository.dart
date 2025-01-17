@@ -25,4 +25,26 @@ class RecruiterRepository {
       },
     );
   }
+
+  Future<Recruiter?> createRecruiter({
+    required String email,
+    required String name,
+    required String location,
+  }) async {
+    final result = await _appNetwork.postRequest(url: RecruiterEndpoints.recruiter, body: {
+      'email': email,
+      'name': name,
+      'location': location,
+    },);
+
+    result.fold((failure){
+      return null;
+    }, (response){
+
+      // final data = response.data;
+      // final 
+      
+    });
+
+  }
 }

@@ -18,6 +18,8 @@ class InitController {
     _ref.read(currentUserProvider.notifier).update((state) => user);
     _ref.read(authTokenProvider.notifier).update((state) => token);
 
+    await Future.delayed(const Duration(seconds: 2));
+
     return user != null && token != null;
   }
 }
