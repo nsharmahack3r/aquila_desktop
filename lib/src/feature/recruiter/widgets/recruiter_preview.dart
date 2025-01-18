@@ -1,3 +1,4 @@
+import 'package:aquila/src/common/widget/form_info_component.dart';
 import 'package:aquila/src/feature/recruiter/controller/recruiter_controller.dart';
 import 'package:aquila/src/model/recruiter.dart';
 import 'package:flutter/material.dart';
@@ -41,15 +42,15 @@ class _RecruiterPreviewState extends ConsumerState<RecruiterPreview> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _infoComponentBuilder(
+          FormInfoComponent(
             controller: _nameController,
             title: "Name",
           ),
-          _infoComponentBuilder(
+          FormInfoComponent(
             controller: _emailController,
             title: "Email",
           ),
-          _infoComponentBuilder(
+          FormInfoComponent(
             controller: _locationController,
             title: "Location",
           ),
@@ -117,36 +118,6 @@ class _RecruiterPreviewState extends ConsumerState<RecruiterPreview> {
                 )
         ],
       ),
-    );
-  }
-
-  Widget _infoComponentBuilder({
-    required TextEditingController controller,
-    required String title,
-  }) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          style: const TextStyle(
-            fontSize: 12,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        const SizedBox(
-          height: 6,
-        ),
-        TextFormField(
-          controller: controller,
-          decoration: const InputDecoration(
-            border: OutlineInputBorder(),
-          ),
-        ),
-        const SizedBox(
-          height: 12,
-        )
-      ],
     );
   }
 }
