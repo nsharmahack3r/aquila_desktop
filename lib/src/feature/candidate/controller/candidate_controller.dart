@@ -57,4 +57,8 @@ class CandidateController extends StateNotifier<bool> {
 
     return result;
   }
+
+  Future<List<Candidate>> getCandidates() async {
+    throw UnimplementedError();
+  }
 }

@@ -47,4 +47,9 @@ class CandidateRepository {
       },
     );
   }
+
+  Future<List<Candidate>?> getAllCandidates({
+    required int page,
+    int limit = 20,
+  }) async {}
 }
